@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>
+      <span class="crypto">Crypto</span> 
+      <span class="tracker">Tracker</span>
+    </h1>
+    <div class="controls">
+      <input type="text" id="searchBox" placeholder="Search cryptocurrency..." />
+      <select id="currencySelect">
+        <option value="usd" selected>USD ($)</option>
+        <option value="inr">INR (₹)</option>
+      </select>
+    </div>
+  </header>
+
+  <main>
+    <section id="crypto-list">
+      <h2>All Cryptocurrencies</h2>
+      <div id="coins"></div>
+    </section>
+
+    <aside id="watchlist">
+      <h2>My Watchlist</h2>
+      <div id="watchlist-items"></div>
+    </aside>
+  </main>
+
+  <footer>
+    <p>Data from CoinGecko API ... Auto updates every 60 seconds</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

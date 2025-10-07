@@ -1,0 +1,174 @@
+* { 
+    box-sizing: border-box; 
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #0b0f14;
+  color: #e6edf3;
+}
+
+
+header {
+  background: #161b22;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+
+header h1 span.crypto {
+  color: #f1c40f; 
+}
+
+header h1 span.tracker {
+  color: #2ecc71; 
+}
+
+
+header .controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#searchBox {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  width: 220px;
+  font-size: 0.9rem;
+}
+
+#currencySelect {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 40px;
+  gap: 20px;
+}
+
+
+#crypto-list, #watchlist {
+  background: #161b22;
+  border-radius: 12px;
+  padding: 20px;
+  flex: 1;
+  min-width: 350px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+
+#crypto-list h2 {
+  color: #f1c40f; 
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+#watchlist h2 {
+  color: #1abc9c; 
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+
+.crypto-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #2d333b;
+  transition: background 0.2s ease;
+}
+
+.crypto-item:last-child {
+  border-bottom: none;
+}
+
+.crypto-item:hover {
+  background: rgba(46, 204, 113, 0.05);
+}
+
+.crypto-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.crypto-name img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+
+.price {
+  font-weight: 600;
+}
+
+.price.up { color: #2ecc71; }
+.price.down { color: #e74c3c; }
+
+
+.add-btn, .remove-btn {
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.add-btn {
+  background: #2ecc71; 
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(46, 204, 113, 0.4);
+}
+
+.add-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 12px rgba(46, 204, 113, 0.6);
+}
+
+.remove-btn {
+  background: #e74c3c; 
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(231, 76, 60, 0.4);
+}
+
+.remove-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 12px rgba(231, 76, 60, 0.6);
+}
+
+
+footer {
+  text-align: center;
+  background: #161b22;
+  padding: 14px 0;
+  font-size: 0.85rem;
+  color: #95a5a6;
+}
