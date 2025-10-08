@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
 }
-
 html { scroll-behavior: smooth; }
 body {
   font-family: "Poppins", system-ui, sans-serif;
@@ -11,7 +10,6 @@ body {
   color: #e6edf3;
   line-height: 1.6;
 }
-
 header {
   background: #161b22;
   padding: 1rem 2rem;
@@ -20,7 +18,6 @@ header {
   align-items: center;
   flex-wrap: wrap;
 }
-
 header h1 { font-size: 2rem; font-weight: 700; }
 .crypto { color: #f1c40f; }
 .tracker { color: #2ecc71; }
@@ -30,8 +27,6 @@ header h1 { font-size: 2rem; font-weight: 700; }
   gap: 10px;
   margin-top: 10px;
 }
-
-
 #searchBox, #currencySelect {
   border-radius: 8px;
   border: none;
@@ -88,7 +83,7 @@ main {
   border-radius: 50%;
   object-fit: cover;
 }
-.price { font-weight: 600; }
+.price { font-weight: 600; text-align: right; }
 .price.up { color: #2ecc71; }
 .price.down { color: #e74c3c; }
 .add-btn, .remove-btn {
@@ -118,7 +113,6 @@ main {
   transform: scale(1.05);
   box-shadow: 0 5px 12px rgba(231,76,60,0.6);
 }
-
 footer {
   text-align: center;
   background: #161b22;
