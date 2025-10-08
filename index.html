@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crypto Tracker</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Track live cryptocurrency prices and manage your watchlist. Auto updates every 60 seconds.">
+  <meta name="theme-color" content="#0b0f14" />
+  <link rel="preconnect" href="https://api.coingecko.com" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" as="script" href="script.js" />
 </head>
 <body>
   <header>
-    <h1>
-      <span class="crypto">Crypto</span> 
-      <span class="tracker">Tracker</span>
-    </h1>
+    <h1><span class="crypto">Crypto</span> <span class="tracker">Tracker</span></h1>
     <div class="controls">
-      <input type="text" id="searchBox" placeholder="Search cryptocurrency..." />
-      <select id="currencySelect">
+      <input type="text" id="searchBox" placeholder="Search cryptocurrency..." aria-label="Search cryptocurrency" />
+      <select id="currencySelect" aria-label="Select currency">
         <option value="usd" selected>USD ($)</option>
         <option value="inr">INR (₹)</option>
       </select>
@@ -24,19 +25,21 @@
   <main>
     <section id="crypto-list">
       <h2>All Cryptocurrencies</h2>
-      <div id="coins"></div>
+      <div id="coins" aria-live="polite"></div>
     </section>
-
     <aside id="watchlist">
       <h2>My Watchlist</h2>
-      <div id="watchlist-items"></div>
+      <div id="watchlist-items" aria-live="polite"></div>
     </aside>
   </main>
 
   <footer>
-    <p>Data from CoinGecko API ... Auto updates every 60 seconds</p>
+    <p>Data from CoinGecko API ... auto updates every 60 seconds</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
+
+
+
