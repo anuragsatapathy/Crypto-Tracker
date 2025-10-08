@@ -10,11 +10,16 @@ currencySelect.value = currency;
 
 async function fetchData() {
   coinsContainer.innerHTML = "Loading...";
-  const res = await fetch(
-    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=false`
-  );
-  allCoins = await res.json();
-  displayCoins(allCoins);
+  try {
+    const res = await fetch(
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=false`
+    );
+    allCoins = await res.json();
+    displayCoins(allCoins);
+    displayWatchlist();
+  } catch {
+    coinsContainer.innerHTML = "<p>Failed to load data.</p>";
+  }
 }
 
 function displayCoins(coins) {
@@ -22,14 +27,17 @@ function displayCoins(coins) {
   coins.forEach(c => {
     const div = document.createElement("div");
     div.className = "crypto-item";
+    const priceChange = c.price_change_percentage_24h || 0;
+    const priceClass = priceChange >= 0 ? "up" : "down";
     div.innerHTML = `
       <div class="crypto-name">
         <img src="${c.image}" alt="${c.name}" loading="lazy">
         <span>${c.name} (${c.symbol.toUpperCase()})</span>
       </div>
-      <span class="price ${c.price_change_percentage_24h >= 0 ? "up" : "down"}">
-        ${currencySymbol[currency]}${c.current_price.toLocaleString()}
-      </span>
+      <div class="price ${priceClass}">
+        ${currencySymbol[currency]}${c.current_price.toLocaleString()} 
+        (${priceChange.toFixed(2)}%)
+      </div>
       <button class="add-btn" data-id="${c.id}">Add</button>
     `;
     coinsContainer.appendChild(div);
@@ -62,15 +70,18 @@ function displayWatchlist() {
   }
   watchlist.forEach(c => {
     const div = document.createElement("div");
+    const priceChange = c.price_change_percentage_24h || 0;
+    const priceClass = priceChange >= 0 ? "up" : "down";
     div.className = "crypto-item";
     div.innerHTML = `
       <div class="crypto-name">
         <img src="${c.image}" alt="${c.name}" loading="lazy">
         <span>${c.name} (${c.symbol.toUpperCase()})</span>
       </div>
-      <span class="price ${c.price_change_percentage_24h >= 0 ? "up" : "down"}">
-        ${currencySymbol[currency]}${c.current_price.toLocaleString()}
-      </span>
+      <div class="price ${priceClass}">
+        ${currencySymbol[currency]}${c.current_price.toLocaleString()} 
+        (${priceChange.toFixed(2)}%)
+      </div>
       <button class="remove-btn" data-id="${c.id}">Remove</button>
     `;
     watchlistContainer.appendChild(div);
@@ -94,6 +105,6 @@ currencySelect.addEventListener("change", e => {
   fetchData();
 });
 
-displayWatchlist();
 fetchData();
+displayWatchlist();
 setInterval(fetchData, 60000);
