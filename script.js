@@ -77,24 +77,29 @@ function displayWatchlist() {
     return;
   }
 
+  // Destructuring used here
   watchlist.forEach(c => {
-    const id = c?.id || "";
-    const name = c?.name || "Unknown";
-    const symbol = c?.symbol?.toUpperCase?.() || "N/A";
-    const img = c?.image || "";
-    const price = c?.current_price ? c.current_price.toLocaleString() : "0";
-    const priceChange = c?.price_change_percentage_24h ?? 0;
-    const priceClass = priceChange >= 0 ? "up" : "down";
+    const {
+      id = "",
+      name = "Unknown",
+      symbol = "N/A",
+      image: img = "",
+      current_price,
+      price_change_percentage_24h = 0
+    } = c;
+
+    const price = current_price ? current_price.toLocaleString() : "0";
+    const priceClass = price_change_percentage_24h >= 0 ? "up" : "down";
 
     const div = document.createElement("div");
     div.className = "crypto-item";
     div.innerHTML = `
       <div class="crypto-name">
         <img src="${img}" alt="${name}" loading="lazy">
-        <span>${name} (${symbol})</span>
+        <span>${name} (${symbol.toUpperCase()})</span>
       </div>
       <div class="price ${priceClass}">
-        ${currencySymbol[currency]}${price} (${priceChange.toFixed(2)}%)
+        ${currencySymbol[currency]}${price} (${price_change_percentage_24h.toFixed(2)}%)
       </div>
       <button class="remove-btn" data-id="${id}">Remove</button>
     `;
@@ -149,11 +154,17 @@ watchlistContainer.addEventListener("click", (e) => {
 // Debounced search with suggestions
 let debounceTimer;
 searchBox.addEventListener("input", () => {
-  clearTimeout(debounceTimer);
+  // If debounceTimer already exists, clear it, else do rest
+  if (debounceTimer) {
+    clearTimeout(debounceTimer);
+  }
+
   debounceTimer = setTimeout(() => {
     const term = searchBox.value.toLowerCase();
     const filtered = allCoins.filter(
-      c => c.name?.toLowerCase?.().includes(term) || c.symbol?.toLowerCase?.().includes(term)
+      c =>
+        c.name?.toLowerCase?.().includes(term) ||
+        c.symbol?.toLowerCase?.().includes(term)
     );
     displayCoins(filtered);
 
