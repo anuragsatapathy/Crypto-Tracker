@@ -114,6 +114,7 @@ main {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 200px;
 }
 
 .crypto-name img {
@@ -121,11 +122,24 @@ main {
   height: 35px;
   border-radius: 50%;
   object-fit: cover;
+  background: #0a0c0e;
 }
 
-.price { font-weight: 600; text-align: right; }
-.price.up { color: #2ecc71; }
-.price.down { color: #e74c3c; }
+.price {
+  font-weight: 600;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 160px;
+  gap: 4px;
+}
+
+.price .value { font-size: 1rem; }
+.price .percent { font-size: 0.85rem; opacity: 0.9; }
+
+.price.up .percent { color: #2ecc71; }
+.price.down .percent { color: #e74c3c; }
 
 .add-btn, .remove-btn {
   border: none;
@@ -157,6 +171,12 @@ main {
   box-shadow: 0 5px 12px rgba(231,76,60,0.6);
 }
 
+.footer-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #95a5a6;
+}
+
 footer {
   text-align: center;
   background: #161b22;
@@ -169,6 +189,9 @@ footer {
   main { flex-direction: column; padding: 20px; }
   #searchBox { width: 100%; }
   #suggestions { width: 100%; top: 38px; }
+  .price { min-width: 120px; }
+  .crypto-name { min-width: 140px; }
 }
+
 
 
